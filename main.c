@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:39:41 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/10 17:32:40 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/10 17:47:15 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,25 +243,34 @@ t_lexer_node	*ft_token_segmentation(t_lexer_node *list)
 	while (current != NULL)
 	{
 		i = 0;
-		while (current->str[i] != '\0')
+		while (original_str[i] != '\0')
 		{
 			current->closed_quote = true;
 			j = 0;
-			while (current->str[i + j] != '\0' && ((current->str[i + j] != '<' && current->str[i + j] != '>' && current->str[i + j] != '|') || current->closed_quote == false))
+			while (original_str[i + j] != '\0' && ((original_str[i + j] != '<' && original_str[i + j] != '>' && original_str[i + j] != '|') || current->closed_quote == false))
 			{
-				if (current->str[i + j] == current->quote)
+				if (original_str[i + j] == current->quote)
 					ft_switch_bool(&current->closed_quote);
 				if (current->closed_quote == true)
 				{
-					current->seperator = current->str[i + j];
-					temp = current->str;
-					current->str = ft_substr(current->str, 0, j - 1)
+					current->str = ft_substr(original_str, i, j - 1);
+					ft_insert_node(current);
+					current = current->next;
+					current->seperator = original_str[i + j];
+					i += j - 1;
+					j = 0;
+					while (original_str[i + j] == current->separator)
+						j++;
+					current->str = ft_substr(original_str, i, j - 1);
+					if (original_str[i + j] != '\0')
+					{
+						ft_insert_node(current);
+						current = current->next;
+					}
 				}
 				j++;
 			}
-			if (current->separator == '\0' && (current->str[i] == '<' || current->str[i] == '>' || current->str[i] == '|'))
-				current->separator = current->str[i];
-			i++;
+			i += j;;
 		}
 	}
 }
