@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:39:41 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/12 21:33:17 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/12 22:00:05 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 void	ft_print_list(t_lexer_node *list)
 {
 	size_t	i;
-	char	separator[2];
 
-	separator[1] = '\0';
 	i = 0;
 	while (list != NULL)
 	{
-		separator[0] = list->separator;
-		printf("[%zu]: $%s$\nclosed_quote: %s\nseparator: %s\n\n", i, list->str, \
-				list->closed_quote ? "true" : "false", list->separator ? separator : "NaN");
+		printf("[%zu]: $%s$\nclosed_quote: %s\n\n", \
+				i, list->str, list->closed_quote ? "true" : "false");
 		list = list->next;
 		i++;
 	}

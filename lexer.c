@@ -6,35 +6,30 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:35:36 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/12 21:33:59 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/12 21:57:24 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-size_t	ft_skip_token(char *str, char *separator, bool *closed_quote)
+size_t	ft_skip_token(char *str, bool *closed_quote)
 {
 	size_t	i;
-	char	c;
+	char	quote;
 
 	i = 0;
 	if (ft_is_a_separator(str[i]))
-	{
-		*separator = str[i];
-		while (str[i] == *separator)
-			i++;
-		return (i);
-	}
+		return (ft_skip_separator(str));
 	else
 	{
-		while (str[i] != '\0' && ft_is_a_token(str[i], *closed_quote))
+		while (ft_is_a_token(str[i], *closed_quote))
 		{
 			if (ft_is_a_quote(str[i]) && *closed_quote == true)
 			{
-				c = str[i];
+				quote = str[i];
 				ft_switch_bool(closed_quote);
 			}
-			else if (str[i] == c)
+			else if (str[i] == quote)
 				ft_switch_bool(closed_quote);
 			i++;
 		}
@@ -51,8 +46,7 @@ t_lexer_node	*ft_token_segmentation(t_lexer_node *list)
 	while (current != NULL)
 	{
 		current->closed_quote = true;
-		i = ft_skip_token(current->str, &current->separator, \
-							&current->closed_quote);
+		i = ft_skip_token(current->str, &current->closed_quote);
 		if (current->str[i] != '\0')
 		{
 			current = ft_split_node(current, i);
@@ -68,17 +62,17 @@ t_lexer_node	*ft_token_segmentation(t_lexer_node *list)
 size_t	ft_skip_word(char *str, bool *closed_quote)
 {
 	size_t	i;
-	char	c;
+	char	quote;
 
 	i = 0;
 	while (str[i] != '\0' && (str[i] != ' ' || *closed_quote == false))
 	{
 		if (ft_is_a_quote(str[i]) && *closed_quote == true)
 		{
-			c = str[i];
+			quote = str[i];
 			*closed_quote = false;
 		}
-		else if (str[i] == c)
+		else if (str[i] == quote)
 			ft_switch_bool(closed_quote);
 		i++;
 	}

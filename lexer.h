@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:42:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/12 21:31:21 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/12 21:56:26 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@
 typedef struct s_lexer_node
 {
 	char				*str;
-	char				quote;
 	bool				closed_quote;
-	char				separator;
 	struct s_lexer_node	*next;
 }	t_lexer_node;
 
@@ -49,7 +47,8 @@ bool			ft_is_a_token(char c, bool closed_quote);
 t_lexer_node	*ft_lexer(char *prompt);
 void			ft_print_list(t_lexer_node *list);
 char			*ft_remove_each_occurence(char *str, char c);
-size_t			ft_skip_token(char *str, char *separator, bool *closed_quote);
+size_t			ft_skip_separator(char *str);
+size_t			ft_skip_token(char *str, bool *closed_quote);
 size_t			ft_skip_word(char *str, bool *closed_quote);
 t_lexer_node	*ft_split_node(t_lexer_node *node, size_t index);
 void			ft_switch_bool(bool *value);
