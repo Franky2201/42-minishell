@@ -6,7 +6,7 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/09 16:12:50 by gde-win           #+#    #+#              #
-#    Updated: 2024/02/09 18:25:09 by gde-win          ###   ########.fr        #
+#    Updated: 2024/02/12 16:33:59 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,11 @@ LREADLINE:=		-lreadline -lhistory -L/Users/$(USER)/homebrew/opt/readline/lib
 
 IREADLINE:=		-I/Users/$(USER)/homebrew/opt/readline/include
 
-FUNCTIONS :=	main.c
+FUNCTIONS :=	main.c \
+				clean.c \
+				lexer.c \
+				lexer_utils.c \
+				list_utils.c
 
 SRCS :=			$(FUNCTIONS)
 
@@ -30,12 +34,12 @@ INCLUDE :=		lexer.h
 
 LIBFT :=		libft
 
-all:			$(LIBFT) $(NAME)
+all:			$(LIBFT) $(OBJS) $(NAME)
 
 $(LIBFT):
 					@make -C $@
 
-$(OBJS):		$(SRCS)
+%.o:			%.c
 					$(CC) $(CFLAGS) $(IREADLINE) -c $< -o $@
 
 $(NAME):		$(OBJS)
