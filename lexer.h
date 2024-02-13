@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:42:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/13 20:30:14 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/13 21:22:27 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_lexer_node
 {
 	char				*str;
 	bool				closed_quote;
-	bool				escaped;
 	struct s_lexer_node	*next;
 }	t_lexer_node;
 
