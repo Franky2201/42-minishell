@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:35:36 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/12 21:57:24 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:57:49 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ size_t	ft_skip_word(char *str, bool *closed_quote)
 	char	quote;
 
 	i = 0;
-	while (str[i] != '\0' && (str[i] != ' ' || *closed_quote == false))
+	while (str[i] != '\0' && \
+			(!ft_is_a_space(str[i]) || *closed_quote == false))
 	{
 		if (ft_is_a_quote(str[i]) && *closed_quote == true)
 		{
@@ -95,7 +96,7 @@ t_lexer_node	*ft_word_segmentation(char *str)
 		current->str = ft_substr(str, 0, i);
 		if (current->str == NULL)
 			return (ft_free_list(list));
-		while (str[i] == ' ')
+		while (ft_is_a_space(str[i]))
 			i++;
 		if (str[i] != '\0')
 		{

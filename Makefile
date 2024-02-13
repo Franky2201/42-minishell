@@ -6,7 +6,7 @@
 #    By: gde-win <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/09 16:12:50 by gde-win           #+#    #+#              #
-#    Updated: 2024/02/12 16:33:59 by gde-win          ###   ########.fr        #
+#    Updated: 2024/02/13 20:32:27 by gde-win          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,10 @@ LREADLINE:=		-lreadline -lhistory -L/Users/$(USER)/homebrew/opt/readline/lib
 IREADLINE:=		-I/Users/$(USER)/homebrew/opt/readline/include
 
 FUNCTIONS :=	main.c \
-				clean.c \
+				clean_quotes.c \
 				lexer.c \
-				lexer_utils.c \
+				lexer_utils_0.c \
+				lexer_utils_1.c \
 				list_utils.c
 
 SRCS :=			$(FUNCTIONS)

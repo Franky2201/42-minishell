@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:42:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/12 21:56:26 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/13 20:30:14 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_lexer_node
 {
 	char				*str;
 	bool				closed_quote;
+	bool				escaped;
 	struct s_lexer_node	*next;
 }	t_lexer_node;
 
@@ -38,15 +39,21 @@ typedef struct s_input
 }	t_input;
 
 int				main(int ac, char **av);
-size_t			ft_count_occurences(char *str, char c);
+void			ft_clean_quotes(t_lexer_node *list);
+t_lexer_node	*ft_clean_word(t_lexer_node *node);
+size_t			ft_count_quotes(t_lexer_node *node);
 t_lexer_node	*ft_free_list(t_lexer_node *list);
 t_lexer_node	*ft_insert_node(t_lexer_node *list);
 bool			ft_is_a_quote(char c);
 bool			ft_is_a_separator(char c);
+bool			ft_is_a_space(char c);
 bool			ft_is_a_token(char c, bool closed_quote);
+bool			ft_is_closing_quote(char c, char quote, bool closed_quote);
+bool			ft_is_opening_quote(char c, bool closed_quote);
 t_lexer_node	*ft_lexer(char *prompt);
 void			ft_print_list(t_lexer_node *list);
-char			*ft_remove_each_occurence(char *str, char c);
+bool			ft_remove_quotes(char *str, char c, \
+									char *quote, bool *closed_quote);
 size_t			ft_skip_separator(char *str);
 size_t			ft_skip_token(char *str, bool *closed_quote);
 size_t			ft_skip_word(char *str, bool *closed_quote);
