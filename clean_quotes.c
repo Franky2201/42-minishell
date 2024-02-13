@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:01:31 by gde-win           #+#    #+#             */
-/*   Updated: 2024/02/13 20:29:24 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/02/13 20:40:29 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_clean_quotes(t_lexer_node *list)
 	{
 		str = list->str;
 		ft_clean_word(list);
-		free(list);
+		free(str);
 		list = list->next;
 	}
 }
