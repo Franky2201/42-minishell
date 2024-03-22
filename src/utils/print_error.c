@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 11:35:00 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 08:46:32 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:10:17 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	print_error(char *arg, char *cmd, char *custom)
 {
 	if (arg)
-		ft_fprintf(2, "minishell: %s: %s: %s\n", arg, cmd, 
+		ft_fprintf(2, "minishell: %s: %s: %s\n", arg, cmd,
 			strerror(errno));
 	else if (cmd && custom)
 		ft_fprintf(2, "minishell: %s: %s\n", cmd, custom);

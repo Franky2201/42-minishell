@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:18:40 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/21 15:32:53 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:03:53 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "builtin.h"
 # include "execution.h"
 # include "lexer.h"
+
 void	ft_add_builtin(void *content);
 t_list	*ft_add_parser_node(t_list **list);
 t_list	*ft_add_redirection(t_parser *node, t_list **lexer);
@@ -40,5 +41,4 @@ void	*ft_replace_variables(t_list *lexer, t_list *env, \
 								char *exit_status, bool clean_quotes);
 char	*ft_rewrite_str(char *str, size_t index, \
 						t_list *env, char *exit_status);
-
 #endif

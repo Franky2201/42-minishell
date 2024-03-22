@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
+/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:19:55 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 11:23:39 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/22 12:09:55 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ t_list	*ft_add_redirection(t_parser *node, t_list **lexer)
 	content->token = ft_name_redirection(lexer);
 	if (content->token == HEREDOC)
 		node->is_hd = true;
-	// //modif
-	// if (!*lexer)
-	// 	return (NULL);
 	temp = (t_lexer *)(*lexer)->content;
 	if (ft_strchr(temp->str, '\'') || ft_strchr(temp->str, '\"'))
 	{
@@ -96,7 +93,6 @@ size_t	ft_go_to_pipe(t_list *lexer)
 		else
 			i++;
 		lexer = lexer->next;
-		//modif
 		if (lexer)
 			content = (t_lexer *)lexer->content;
 		else

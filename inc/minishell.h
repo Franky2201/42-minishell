@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:22:40 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 11:24:48 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/22 12:03:47 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # include "../src/libft/inc/libft.h"
 # include "../src/ft_fprintf/inc/ft_fprintf.h"
 # include "../src/gnl/get_next_line.h"
-//REMOVE
-# include "debug.h"
 # include "builtin.h"
 # include "constant.h"
 # include "environment.h"
@@ -39,8 +37,6 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <unistd.h>
-
-//bool	child_flag;
 
 size_t	alloc_len(t_list *lst);
 int		print_error(char *arg, char *cmd, char *custom);

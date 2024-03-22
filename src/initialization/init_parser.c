@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:29:59 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 11:56:01 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:10:34 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_free_str(void *content)
 void	ft_set_separator_flag(t_lexer *node)
 {
 	if (!ft_strchr(node->str, '\'') && !ft_strchr(node->str, '\"') \
-			&& ft_is_a_separator(node->str[0]))
-        node->separator = true;
+		&& ft_is_a_separator(node->str[0]))
+		node->separator = true;
 }
 
 void	ft_clean_lexer(t_shell *d)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
+/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:42:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/21 23:18:51 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:03:43 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define HERE_DOC "<<"
 # define OUTPUT_APPEND_REDIRECTION ">>"
 # define PIPE "|"
+
 t_list	*ft_add_lexer_node(t_list **list);
 bool	ft_check_syntax(t_list *list);
 bool	ft_closed_quote(t_list *list);

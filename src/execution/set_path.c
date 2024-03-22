@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:36:11 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 11:32:36 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:07:40 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,28 @@ static	char	*join(char const *s1, char const *s2)
 static	bool	is_dir(char *s, int *p)
 {
 	struct stat	statbuf;
-	
+
 	if (stat(s, &statbuf) == 0
 		&& S_ISDIR(statbuf.st_mode)
 		&& ft_strchr(s, '/'))
 	{
 		*p = 126;
 		if (access(s, X_OK))
-			return (print_error(NULL, s, 
-					strerror(errno)));
+			return (print_error(NULL, s, strerror(errno)));
 		return (print_error(NULL, s, "Is a directory"));
 	}
-	else if (errno == ENOENT 
-			|| (statbuf.st_mode && !S_IXUSR))
+	else if (errno == ENOENT
+		|| (statbuf.st_mode && !S_IXUSR))
 	{
 		*p = 127;
 		if (ft_strchr(s, '/'))
-			return (print_error(NULL, s,
-					strerror(ENOENT)));
+			return (print_error(NULL, s, strerror(ENOENT)));
 		return (print_error(NULL, s, "command not found"));
 	}
 	else if (access(s, X_OK))
 	{
 		*p = 126;
-		return (print_error(NULL, NULL,
-				strerror(EACCES)));
+		return (print_error(NULL, NULL, strerror(EACCES)));
 	}
 	return (false);
 }
