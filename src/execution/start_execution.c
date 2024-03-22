@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:31:57 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 10:48:32 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:38:01 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ static	bool	check_access(t_parser *cmd, t_shell *shell)
 			return (print_error(NULL, NULL,
 					strerror(ENOMEM)));
 		}
+		return (1);
 	}
+	free(cmd->path);
 	return (0);
 }
 
@@ -77,6 +79,8 @@ int	start_execution(t_shell *shell)
 		if (!s.content->f
 			&& check_access(s.content, shell))
 		{
+			if (errno != ENOMEM)
+				redirection(s.content, shell);
 			s.node = s.node->next;
 			continue ;
 		}

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:30:58 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 18:40:49 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:03:53 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	close_pipe(t_shell *d)
 	size_t	i;
 
 	end = ft_lstsize(d->parser);
+	status = 0;
 	if (end == 1)
 	{
 		waitpid(-1, &status, 0);

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:36:11 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 12:07:40 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:53:16 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ char	*set_path(t_parser *cmd, t_list *env, char *no_env_path)
 	if (!tmp)
 		return (NULL);
 	_path = _access(cmd, tmp);
+	ft_free_tab((void *)tmp);
 	return (_path);
 }

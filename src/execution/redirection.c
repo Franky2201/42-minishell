@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:29:39 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 10:46:28 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:17:02 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ static	int	last_redirection(t_list *p)
 	@param rd : node content address
 */
 
-static int	_dup2(t_list *lst, t_shell *d)
+static int	_dup2(t_list *lst, t_parser *cmd, t_shell *d)
 {
 	t_rd	*rd;
 
 	rd = (t_rd *)lst->content;
 	if (_open(rd, d))
 		return (1);
+	if (!cmd->argv[0])
+		return (0);
 	if ((rd->token == INPUT && !last_redirection(lst))
 		|| (rd->token == HEREDOC && !last_redirection(lst)))
 	{
@@ -94,7 +96,7 @@ int	redirection(t_parser *cmd, t_shell *d)
 	tmp = cmd->rd;
 	while (tmp)
 	{
-		if (_dup2(tmp, d))
+		if (_dup2(tmp, cmd, d))
 			return (1);
 		tmp = tmp->next;
 	}

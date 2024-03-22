@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:17:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 12:06:25 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:08:51 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_prompt
 }	t_prompt;
 typedef struct s_shell
 {
+	bool		child;
 	bool		is_env;
 	char		*s;
 	char		*tmp;

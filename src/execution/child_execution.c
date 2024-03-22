@@ -6,20 +6,20 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:55:21 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 11:16:38 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:36:24 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static	int	call_execve(t_parser *cmd, t_shell *d)
+static	int	call_execve(t_parser *cmd, t_shell *shell)
 {
-	cmd->envp = env_list_to_tab(d->env);
+	cmd->envp = env_list_to_tab(shell->env);
 	if (cmd->envp == NULL)
 		return (1);
+	cmd->path = set_path(cmd, shell->env, shell->builtin->path);
 	ft_child_signal();
 	execve(cmd->path, cmd->argv, cmd->envp);
-	free(cmd->path);
 	ft_free_tab((void **)cmd->envp);
 	exit(errno);
 }
@@ -52,6 +52,7 @@ void	child_execution(t_list *node, t_shell *shell)
 {
 	t_parser	*cmd;
 
+	shell->child = true;
 	cmd = (t_parser *)(node->content);
 	redir_pipe(node, cmd, shell);
 	if (redirection(cmd, shell))

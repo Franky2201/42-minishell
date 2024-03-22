@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
+/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:30:49 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 22:49:33 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:38:50 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static	char	*expand(char *s, t_list *env, int e_status)
+static	char	*expand(char *s, t_list *env, int e_status, char **exit)
 {
-	char	*exit;
+
 	t_list	node;
 	t_lexer	tmp;
 
-	exit = ft_itoa(e_status);
-	if (!exit)
+	*exit = ft_itoa(e_status);
+	if (!*exit)
 	{
 		free(s);
 		return (NULL);
@@ -28,7 +28,7 @@ static	char	*expand(char *s, t_list *env, int e_status)
 	tmp.str = s;
 	tmp.closed_quote = true;
 	node.content = (void *)&tmp;
-	s = (char *)ft_replace_variables(&node, env, exit, false);
+	s = (char *)ft_replace_variables(&node, env, *exit, false);
 	if (!s)
 	{
 		free(s);
@@ -39,7 +39,8 @@ static	char	*expand(char *s, t_list *env, int e_status)
 
 static	int	child(t_hd *hd, t_shell *d)
 {
-	int	tmp;
+	char	*_exit;
+	int		tmp;
 
 	close(hd->pipe[0]);
 	tmp = dup(STDIN_FILENO);
@@ -48,12 +49,14 @@ static	int	child(t_hd *hd, t_shell *d)
 		write(tmp, "> ", 2);
 		hd->line = get_next_line(STDIN_FILENO);
 		if (hd->expand)
-			hd->line = expand(hd->line, d->env, d->status);
+			hd->line = expand(hd->line, d->env, d->status, &_exit);
+		free(_exit);
 		if (!hd->line || !ft_strncmp(hd->line, hd->s, ft_strlen(hd->line) - 1))
 		{
 			close(hd->pipe[1]);
 			close(tmp);
 			free(hd->line);
+			free_table(d);
 			exit(0);
 		}
 		write(hd->pipe[1], hd->line, ft_strlen(hd->line));
