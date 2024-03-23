@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:55:21 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 14:36:24 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:03:52 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static	int	call_execve(t_parser *cmd, t_shell *shell)
 {
 	cmd->envp = env_list_to_tab(shell->env);
-	if (cmd->envp == NULL)
+	if (!cmd->envp)
 		return (1);
 	cmd->path = set_path(cmd, shell->env, shell->builtin->path);
 	ft_child_signal();

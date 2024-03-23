@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:22:40 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 12:03:47 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:21:50 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <termios.h>
 
 size_t	alloc_len(t_list *lst);
 int		print_error(char *arg, char *cmd, char *custom);
@@ -47,4 +48,5 @@ void	ft_child_signal(void);
 void	_signal(void);
 void	next_line(int signal);
 void	ft_set_separator_flag(t_lexer *node);
+void	close_fd(int fd);
 #endif

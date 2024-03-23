@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:45:40 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 19:07:19 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:21:06 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,6 @@ t_f	*select_builtin(char *str)
 		return (unset);
 	return (NULL);
 }
-
-// int	exec_builtin(t_parser *cmd, t_shell *d)
-// {
-// 	int		ret;
-
-// 	ret = 0;
-// 	if (builtin_error(cmd->argv))
-// 		return (1);
-// 	d->builtin->argv = cmd->argv;
-// 	d->builtin->env = d->env;
-// 	ret = cmd->f(d->builtin);
-// //	printf("%d\n", cmd->exit_status);
-// 	if (cmd->f == __exit && !ret)
-// 		ret = d->builtin->status;
-// 	if (d->pipe || d->exit)
-// 		exit(ret);
-// 	return (0);
-// }
 
 int	builtin_execution(t_parser *cmd, t_shell *d)
 {

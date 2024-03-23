@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:33:09 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 14:12:07 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:21:59 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	free_current_execution(t_shell *d)
 	free(d->pid);
 	d->pid = NULL;
 	free(d->s);
+	close_fd(d->fdout);
+	close_fd(d->fdin);
 	d->s = NULL;
 	ft_lstclear(&d->lexer, &ft_free_lexer_node);
 	ft_lstclear(&d->parser, &ft_free_parser_node);

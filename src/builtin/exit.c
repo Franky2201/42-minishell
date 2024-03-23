@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 22:45:35 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:53:50 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,24 @@ static	bool	max_val(char *str)
 	return (false);
 }
 
-int	__exit(t_builtin *d)
+static void	ft_set_exit(t_builtin *d)
 {
 	int64_t	status;
 
+	status = 0;
+	if (d->argv[1])
+		status = ft_atoi(d->argv[1]);
+	d->exit = true;
+	d->status = status % 256;
+}
+
+int	__exit(t_builtin *d)
+{
 	if (d->parser_len == 1)
 		ft_fprintf(1, "exit\n");
+	ft_set_exit(d);
 	if (!d->argv[1])
 		return (0);
-	status = ft_atoi(d->argv[1]);
 	if (is_numeric(d->argv[1])
 		|| (ft_strlen(d->argv[1]) >= 19
 			&& max_val(d->argv[1])))
@@ -74,7 +83,5 @@ int	__exit(t_builtin *d)
 		ft_fprintf(2, "minishell: exit: too many arguments\n");
 		return (1);
 	}
-	d->exit = true;
-	d->status = status % 256;
 	return (d->status);
 }

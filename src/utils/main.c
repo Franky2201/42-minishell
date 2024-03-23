@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
+/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 23:58:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 14:11:17 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 15:45:06 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdlib.h>
 
 static	int	ctrl_d(void)
 {
@@ -45,17 +46,17 @@ static	int	main_loop(t_shell *d)
 		signal(SIGINT, &next_line);
 		if (ctrl_d())
 			return (0);
-		d->s = ft_strtrim(d->tmp, WHITESPACES);
-		free(d->tmp);
-		if (d->s && *d->s != '\0')
+		if (d->tmp && *d->tmp != '\0')
 		{
-			add_history(d->s);
+			add_history(d->tmp);
+			ft_fprintf(d->p->fd2, "%s\n", d->tmp);
+			d->s = ft_strtrim(d->tmp, WHITESPACES);
+			free(d->tmp);
 			if (init_current_execution(d))
 				continue ;
 			if (start_execution(d))
 				ft_fprintf(d->p->fd1, "%s\n", d->s);
 			ft_exitstatus(d);
-			ft_fprintf(d->p->fd2, "%s\n", d->s);
 		}
 		free_current_execution(d);
 	}

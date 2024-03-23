@@ -1,8 +1,8 @@
 NAME			=	minishell
 BIN				=	bin
 BUILTIN			=	cd env echo error exit export export_2 export_3 pwd unset update_cwd utils
-EXECUTION		=	child_execution close_pipe env_list_to_tab exec_builtin ft_exit_code ft_is_a_directory ft_set_status\
-					parent_execution set_path redirection start_execution
+EXECUTION		=	child_execution close_pipe env_list_to_tab exec_builtin ft_exit_code ft_set_status\
+					is_dir parent_execution set_path redirection start_execution
 GNL				=	get_next_line get_next_line_utils
 HEREDOC			=	heredoc
 INITIALIZATION	=	init_builtin init_env init_history init_lexer init_parser init_pid init_pipe init_prompt \

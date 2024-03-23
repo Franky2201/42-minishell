@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:29:39 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 13:17:02 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:59:13 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	_dup2(t_list *lst, t_parser *cmd, t_shell *d)
 	rd = (t_rd *)lst->content;
 	if (_open(rd, d))
 		return (1);
-	if (!cmd->argv[0])
+	if (!cmd->argv[0] || (!cmd->is_valid && !cmd->f))
 		return (0);
 	if ((rd->token == INPUT && !last_redirection(lst))
 		|| (rd->token == HEREDOC && !last_redirection(lst)))

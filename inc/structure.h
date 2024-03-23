@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:17:12 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 13:08:51 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:14:32 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_lexer
 }	t_lexer;
 typedef struct s_parser
 {
+	bool	is_valid;
 	bool	is_hd;
 	char	*path;
 	char	**argv;

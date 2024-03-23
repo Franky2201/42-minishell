@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:32:29 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 12:03:16 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:05:27 by rkersten         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTION_H
 # include "structure.h"
 
+bool	is_dir(char *s, int *p);
 int		builtin_execution(t_parser *cmd, t_shell *d);
 void	close_pipe(t_shell *d);
 void	child_execution(t_list *node, t_shell *d);

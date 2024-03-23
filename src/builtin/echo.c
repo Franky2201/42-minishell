@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:43:39 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/14 10:06:23 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:35:57 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static	int	skip_option(char **argv)
 				i++;
 				j = 0;
 			}
+			else if (argv[i][j] != 'n')
+				return (i);
 		}
 	}
 	return (i);
