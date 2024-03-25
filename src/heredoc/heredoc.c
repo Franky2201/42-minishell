@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:30:49 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 18:11:46 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:51:23 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static	int	child(t_hd *hd, t_shell *d)
 	close(hd->pipe[0]);
 	tmp = dup(STDIN_FILENO);
 	_exit = NULL;
+	ft_child_signal();
 	while (1)
 	{
 		write(tmp, "> ", 2);
