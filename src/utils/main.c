@@ -52,6 +52,8 @@ static	int	main_loop(t_shell *d)
 			ft_fprintf(d->p->fd2, "%s\n", d->tmp);
 			d->s = ft_strtrim(d->tmp, WHITESPACES);
 			free(d->tmp);
+			if (!d->s || *d->s == '\0')
+				continue ;
 			if (init_current_execution(d))
 				continue ;
 			if (start_execution(d))
