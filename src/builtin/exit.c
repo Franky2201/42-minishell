@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 14:53:50 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/25 16:34:19 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	__exit(t_builtin *d)
 	}
 	else if (ft_tabsize(d->argv) > 2)
 	{
+		d->exit = false;
 		ft_fprintf(2, "minishell: exit: too many arguments\n");
 		return (1);
 	}
