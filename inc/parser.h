@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:18:40 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 12:03:53 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:11:37 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_clean_spaces(t_list *lexer);
 int		ft_do_replace(t_list *lexer, t_expand *exp, \
 						bool clean_quotes, ssize_t *i);
 void	*ft_expand(t_shell *data);
+char	*ft_expand_home(char *str, t_list *env, t_list *lexer);
 void	ft_free_parser_node(void *content);
 size_t	ft_go_to_pipe(t_list *lexer);
 bool	ft_is_a_variable(t_lexer *node, char *quote, \

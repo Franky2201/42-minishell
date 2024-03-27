@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 18:10:27 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/22 11:23:56 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 16:14:59 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	*ft_replace_variables(t_list *lexer, t_list *env,
 
 	node = (t_lexer *)lexer->content;
 	if (clean_quotes)
-		node->str = ft_clean_spaces(lexer);
+		node->str = ft_expand_home(node->str, env, lexer);
 	if (node->str == NULL)
 		return (NULL);
 	exp.env = env;

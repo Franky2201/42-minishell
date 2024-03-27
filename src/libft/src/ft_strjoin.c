@@ -3,50 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
+/*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 18:49:13 by rkersten          #+#    #+#             */
-/*   Updated: 2024/01/05 18:49:13 by rkersten         ###   ########.fr       */
+/*   Created: 2023/04/17 18:00:58 by gde-win           #+#    #+#             */
+/*   Updated: 2024/03/27 14:46:44 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
-
-static	const char	*c(char const *s1, char const *s2)
-{
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (s2);
-	if (!s2)
-		return (s1);
-	else
-		return ("1");
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*s3;
+	unsigned int	i;
+	unsigned int	j;
+	char			*res;
 
-	if (c(s1, s2) != s2 && c(s1, s2) != s1 && !c(s1, s2))
-		return ((char *)c(s1, s2));
-	s3 = (char *) malloc(sizeof(*s3) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!s3)
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	res = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!res)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
-		s3[i] = s1[i];
+		res[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j])
 	{
-		s3[i + j] = s2[j];
+		res[i + j] = s2[j];
 		j++;
 	}
-	s3[i + j] = '\0';
-	return (s3);
+	res[i + j] = 0;
+	return (res);
 }
