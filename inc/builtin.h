@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:18:37 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/21 22:48:22 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:42:45 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-int		dup_value(char *str, int option, t_env *var);
+int		dup_value(char *str, int option, t_env *var, t_list *env);
 int		builtin_error(char **argv);
 int		cd(t_builtin *d);
 int		echo(t_builtin *d);

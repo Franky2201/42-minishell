@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:47:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 22:47:36 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:40:55 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static	int	export_var(char *str, t_list *lst)
 	var = ft_calloc(1, sizeof(*var));
 	if (!var)
 		return (1);
-	if (dup_value(str, EXPORT, var)
+	if (dup_value(str, EXPORT, var, lst)
 		|| !ft_strncmp(var->name, "_", ft_strlen(var->name)))
 		return (1);
 	node = ft_lstchr(var->name, lst);

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:49:18 by rkersten          #+#    #+#             */
-/*   Updated: 2024/01/05 18:49:18 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:26:57 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 	size_t	j;
 
+	if (!dst || !src)
+		return (0);
 	if (dstsize == 0)
 		return (ft_strlen(src));
 	i = ft_strlen(dst);

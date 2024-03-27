@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:31:57 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/25 13:56:22 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 22:10:30 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ static	bool	check_access(t_parser *cmd, t_shell *shell)
 		if (errno == ENOMEM)
 		{
 			cmd->exit_status = 1;
-			return (print_error(NULL, NULL,
-					strerror(ENOMEM)));
+			return (print_error(NULL, NULL,	strerror(ENOMEM)));
 		}
 		cmd->is_valid = false;
 		return (1);

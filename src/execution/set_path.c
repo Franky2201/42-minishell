@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:36:11 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/23 18:04:16 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 22:11:51 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static	bool	is_reg(char *s, int *p)
 	else if (errno == EPERM)
 	{
 		*p = 126;
-		return (print_error(NULL, NULL,
-				strerror(EPERM)));
+		return (print_error(NULL, NULL,	strerror(EPERM)));
 	}
 	return (1);
 }

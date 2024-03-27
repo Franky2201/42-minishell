@@ -8,7 +8,7 @@ HEREDOC			=	heredoc
 INITIALIZATION	=	init_builtin init_env init_history init_lexer init_parser init_pid init_pipe init_prompt \
 					init_shell init_shlvl init_minimal_env
 LEXER			=	check_syntax check_syntax_utils lexer_utils_0 lexer_utils_1 lexer list_utils
-PARSER			=	expand expand_utils parser_utils parser
+PARSER			=	expand expand_utils parser_utils parser tilde
 UTILS			=	alloc_len exit_shell fd ft_exitstatus free free_table main print_error signal
 SRCS			=	$(addsuffix .c, $(addprefix src/builtin/, $(BUILTIN))) \
 					$(addsuffix .c, $(addprefix src/debug/, $(DEBUG))) \
@@ -91,8 +91,8 @@ fclean: clean
 			echo "=> rm -f $(NAME)"; \
 			/bin/rm -f $(NAME); \
 	fi
-	rm -f .input
-	rm -f .minishell
+#	rm -f .input
+#	rm -f .minishell
 
 re: fclean all
 

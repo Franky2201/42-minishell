@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/25 16:34:19 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 22:41:30 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,18 @@ static	int	is_numeric(char *str)
 
 static	bool	max_val(char *str)
 {
-	char	sign;
+	long long int	num;
+	char			*dup;
+
+	num = ft_atoi(str);
+	dup = ft_itoa(num);
+	if (!dup)
+		return (false);
+	printf("str: %s\ndup: %s\n", str, dup);
+	if (ft_strncmp(str, dup, ft_strlen(str)))
+		return (true);
+	return (false);
+/*	char	sign;
 
 	sign = 1;
 	while (*str == ' ' || (*str > 8 && *str < 14))
@@ -49,7 +60,7 @@ static	bool	max_val(char *str)
 	else if (sign == 1 && ft_strncmp(MAX_VAL, str, ft_strlen(MAX_VAL)) < 0)
 		return (true);
 	return (false);
-}
+*/}
 
 static void	ft_set_exit(t_builtin *d)
 {

@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:40:07 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/19 15:07:58 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 22:14:21 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ static	int	error(char **argv)
 	len = ft_tabsize(argv);
 	if (len == 1
 		&& !getenv("HOME"))
-		return (print_error(NULL, NULL, "minishell: cd: HOME not set\n"));
+		return (print_error(NULL, NULL, "minishell: cd: HOME not set"));
 	if (len > 2)
-		return (print_error(NULL, NULL,
-				"minishell: cd: too many arguments\n"));
+		return (print_error(NULL, NULL, "minishell: cd: too many arguments"));
 	if (len == 2 && ft_strncmp(argv[1], "-", ft_strlen(argv[1])) \
 				&& ft_strncmp(argv[1], "~", ft_strlen(argv[1])))
 	{
@@ -110,8 +109,7 @@ int	cd(t_builtin *d)
 	{
 		tmp = expand_var("OLDPWD", d->env);
 		if (d->unset_owd)
-			return (print_error(NULL, NULL,
-					"minishell: cd: OLDPWD not set\n"));
+			return (print_error(NULL, NULL, "minishell: cd: OLDPWD not set"));
 		else if (!tmp)
 			chdir(d->owd);
 		else
@@ -119,8 +117,8 @@ int	cd(t_builtin *d)
 	}
 	else if (d->argv[1] && ft_strncmp(d->argv[1], "~", ft_strlen(d->argv[1])))
 		chdir(d->argv[1]);
-	else
-		chdir(getenv("HOME"));
+	else if (chdir(expand_var("HOME", d->env)) == -1)
+		print_error("cd", expand_var("HOME", d->env), NULL);
 	if (update_env(d))
 		return (1);
 	return (0);

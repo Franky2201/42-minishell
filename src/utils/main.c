@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 23:58:24 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/25 16:23:07 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 22:09:01 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	if (argc != 1)
-		return (print_error(NULL, NULL, "minishell: usage: ./minishell\n"));
+		return (print_error(NULL, NULL, "minishell: usage: ./minishell"));
 	ft_memset(&d, '\0', sizeof(d));
 	if (envp[0])
 		d.is_env = true;

@@ -6,7 +6,7 @@
 /*   By: gde-win <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:42:28 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/27 16:14:56 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/27 17:46:10 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_expand_home(char *str, t_list *env, t_list *lexer)
 	char	*home;
 	char	*new_path;
 
-	str = ft_clean_spaces(lexer);
+	if (lexer)
+		str = ft_clean_spaces(lexer);
 	if (!str || str[0] != '~' || (str[1] != '\0' && str[1] != '/'))
 		return (str);
 	home = ft_find_home(env);

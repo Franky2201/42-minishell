@@ -6,13 +6,13 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:33:50 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/13 20:52:40 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:45:01 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	dup_value(char *str, int option, t_env *var)
+int	dup_value(char *str, int option, t_env *var, t_list *env)
 {
 	char	c;
 	char	*temp;
@@ -34,6 +34,8 @@ int	dup_value(char *str, int option, t_env *var)
 		else
 			var->value = ft_strdup("");
 	}
+	if (var->value && env)
+		var->value = ft_expand_home(var->value, env, NULL);
 	if (!var->name || (temp && !var->value))
 		return (1);
 	return (0);
@@ -49,7 +51,7 @@ int	init_env(char **env, size_t i, t_list **lst)
 	var = (t_env *)ft_calloc(1, sizeof(*var));
 	if (!var)
 		return (1);
-	if (dup_value(env[i], ENV, var))
+	if (dup_value(env[i], ENV, var, NULL))
 		return (1);
 	node = ft_lstnew((void *)var);
 	if (!node)
