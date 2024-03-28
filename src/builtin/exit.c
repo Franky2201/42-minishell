@@ -6,26 +6,32 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/27 22:41:30 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:26:51 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static	int	is_numeric(char *str)
+static	int	is_numeric(char **str)
 {
 	size_t	i;
+	char	*temp;
 
+	temp = ft_strtrim(*str, WHITESPACES);
+	if (!temp)
+		return (0);
+	free(*str);
+	*str = temp;
 	i = 0;
-	if (str[i] == '-' || str[i] == '+')
+	if (temp[i] == '-' || temp[i] == '+')
 		i++;
-	while (str[i])
+	while (temp[i])
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (1);
+		if (temp[i] < '0' || temp[i] > '9')
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 static	bool	max_val(char *str)
@@ -34,10 +40,9 @@ static	bool	max_val(char *str)
 	char			*dup;
 
 	num = ft_atoi(str);
-	dup = ft_itoa(num);
+	dup = ft_llitoa(num);
 	if (!dup)
 		return (false);
-	printf("str: %s\ndup: %s\n", str, dup);
 	if (ft_strncmp(str, dup, ft_strlen(str)))
 		return (true);
 	return (false);
@@ -80,9 +85,7 @@ int	__exit(t_builtin *d)
 	ft_set_exit(d);
 	if (!d->argv[1])
 		return (0);
-	if (is_numeric(d->argv[1])
-		|| (ft_strlen(d->argv[1]) >= 19
-			&& max_val(d->argv[1])))
+	if (!is_numeric(&d->argv[1]) || max_val(d->argv[1]))
 	{
 		ft_fprintf(2, "minishell: exit: %s: numeric argument required\n", \
 					d->argv[1]);

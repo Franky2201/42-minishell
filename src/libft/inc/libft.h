@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:20:27 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/21 18:27:33 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:25:27 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_substr_len(char *str, char c);
-int64_t		ft_atoi(const char *str);
+int64_t			ft_atoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -63,6 +63,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_remove_quote(const char *str, char mode);
 size_t		ft_tabsize(char **tab);
 char		*ft_itoa(int n);
+char		*ft_llitoa(long long int n);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(const char *s, int fd);
 void		ft_putendl_fd(const char *s, int fd);
