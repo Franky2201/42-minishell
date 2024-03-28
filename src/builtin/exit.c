@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/28 18:49:31 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:54:24 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static	bool	max_val(char *str)
 	dup = ft_llitoa(num);
 	if (!dup)
 		return (false);
+	if (*str == '+')
+		str++;
 	if (ft_strncmp(str, dup, ft_strlen(str)))
 		return (true);
 	return (false);
