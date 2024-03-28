@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-void	ft_close_list(t_list *node)
+static void	ft_close_list(t_list *node, t_list **temp)
 {
 	t_list	*previous;
 	t_list	*next;
@@ -20,7 +20,10 @@ void	ft_close_list(t_list *node)
 	previous = node->previous;
 	next = node->next;
 	if (previous)
+	{
+		*temp = previous;
 		previous->next = next;
+	}
 	if (next)
 		next->previous = previous;
 }
@@ -54,9 +57,8 @@ void	ft_clean_lexer(t_shell *d)
 			if (!temp && !lexer->previous)
 				d->lexer = NULL;
 			else
-				ft_close_list(lexer);
+				ft_close_list(lexer, &temp);
 			ft_lstdelone(lexer, &ft_free_str);
-			lexer = NULL;
 		}
 		if (!temp)
 			break ;
