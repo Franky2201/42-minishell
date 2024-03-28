@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:29:59 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/22 12:10:34 by rkersten         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:46:00 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_clean_lexer(t_shell *d)
 			else
 				ft_close_list(lexer, &temp);
 			ft_lstdelone(lexer, &ft_free_str);
+			lexer = NULL;
 		}
 		if (!temp)
 			break ;
