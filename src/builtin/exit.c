@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/28 18:26:51 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:49:31 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,7 @@ static	bool	max_val(char *str)
 	if (ft_strncmp(str, dup, ft_strlen(str)))
 		return (true);
 	return (false);
-/*	char	sign;
-
-	sign = 1;
-	while (*str == ' ' || (*str > 8 && *str < 14))
-		str++;
-	if (*str == '-')
-	{
-		sign *= -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str == '0')
-		str++;
-	if (sign == -1 && ft_strncmp(MIN_VAL, str, ft_strlen(MIN_VAL)) < 0)
-		return (true);
-	else if (sign == 1 && ft_strncmp(MAX_VAL, str, ft_strlen(MAX_VAL)) < 0)
-		return (true);
-	return (false);
-*/}
+}
 
 static void	ft_set_exit(t_builtin *d)
 {
