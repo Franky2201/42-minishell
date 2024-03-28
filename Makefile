@@ -91,8 +91,8 @@ fclean: clean
 			echo "=> rm -f $(NAME)"; \
 			/bin/rm -f $(NAME); \
 	fi
-#	rm -f .input
-#	rm -f .minishell
+	rm -f .input
+	rm -f .minishell
 
 re: fclean all
 
