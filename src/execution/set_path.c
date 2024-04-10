@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:36:11 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/28 18:50:19 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 17:51:22 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*set_path(t_parser *cmd, t_list *env, char *no_env_path)
 	char	**tmp;
 	t_list	*node;
 
-	if (!cmd->argv[0])
+	if (!cmd || !cmd->argv || !cmd->argv[0])
 		return (NULL);
 	if (!is_reg(cmd->argv[0], &cmd->exit_status))
 		return (ft_strdup(cmd->argv[0]));

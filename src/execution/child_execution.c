@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:55:21 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/25 13:37:44 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 17:59:07 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	child_execution(t_list *node, t_shell *shell)
 	redir_pipe(node, cmd, shell);
 	if (redirection(cmd, shell))
 		exit_shell(shell, 1);
-	if (!cmd->argv[0])
+	if (!cmd || !cmd->argv || !cmd->argv[0])
 		exit_shell(shell, 0);
 	if (cmd->f == NULL
 		&& call_execve(cmd, shell))

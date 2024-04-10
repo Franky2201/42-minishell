@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:19:55 by gde-win           #+#    #+#             */
-/*   Updated: 2024/03/28 18:46:58 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 17:50:04 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ t_list	*ft_aggregate(t_parser *node, t_list *lexer)
 	ssize_t	j;
 	t_lexer	*content;
 
+	if (!lexer)
+		return (NULL);
 	i = ft_go_to_pipe(lexer);
 	if (i == -1)
 		return (ft_aggregate(node, lexer->next));

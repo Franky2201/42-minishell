@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 07:40:07 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/27 22:14:21 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 18:12:20 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	cd(t_builtin *d)
 
 	if (error(d->argv))
 		return (1);
+	tmp = expand_var("HOME", d->env);
 	if (d->argv[1] && !ft_strncmp(d->argv[1], "-", ft_strlen(d->argv[1])))
 	{
 		tmp = expand_var("OLDPWD", d->env);
@@ -117,8 +118,10 @@ int	cd(t_builtin *d)
 	}
 	else if (d->argv[1] && ft_strncmp(d->argv[1], "~", ft_strlen(d->argv[1])))
 		chdir(d->argv[1]);
-	else if (chdir(expand_var("HOME", d->env)) == -1)
-		print_error("cd", expand_var("HOME", d->env), NULL);
+	else if (!tmp)
+		print_error(NULL, NULL, "cd: HOME not set");
+	else if (chdir(tmp) == -1)
+		print_error("cd", tmp, NULL);
 	if (update_env(d))
 		return (1);
 	return (0);

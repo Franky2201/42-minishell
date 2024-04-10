@@ -6,28 +6,24 @@
 /*   By: rkersten <rkersten@student.campus19.be>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:32:14 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/28 18:54:24 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 19:00:11 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static	int	is_numeric(char **str)
+static	int	is_numeric(char *str)
 {
 	size_t	i;
-	char	*temp;
 
-	temp = ft_strtrim(*str, WHITESPACES);
-	if (!temp)
-		return (0);
-	free(*str);
-	*str = temp;
 	i = 0;
-	if (temp[i] == '-' || temp[i] == '+')
+	while (ft_is_a_space(str[i]))
 		i++;
-	while (temp[i])
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
 	{
-		if (temp[i] < '0' || temp[i] > '9')
+		if ((str[i] < '0' || str[i] > '9') && !ft_is_a_space(str[i]))
 			return (0);
 		i++;
 	}
@@ -38,15 +34,26 @@ static	bool	max_val(char *str)
 {
 	long long int	num;
 	char			*dup;
+	char			*temp;
+	bool			plus;
 
-	num = ft_atoi(str);
+	temp = ft_strtrim(str, WHITESPACES);
+	num = ft_atoi(temp);
 	dup = ft_llitoa(num);
 	if (!dup)
+	{
+		free(temp);
 		return (false);
-	if (*str == '+')
-		str++;
-	if (ft_strncmp(str, dup, ft_strlen(str)))
+	}
+	plus = false;
+	if (*temp == '+')
+		plus = true;
+	if (ft_strncmp(temp + plus, dup, ft_strlen(temp)))
+	{
+		free(temp);
 		return (true);
+	}
+	free(temp);
 	return (false);
 }
 
@@ -68,7 +75,7 @@ int	__exit(t_builtin *d)
 	ft_set_exit(d);
 	if (!d->argv[1])
 		return (0);
-	if (!is_numeric(&d->argv[1]) || max_val(d->argv[1]))
+	if (!is_numeric(d->argv[1]) || max_val(d->argv[1]))
 	{
 		ft_fprintf(2, "minishell: exit: %s: numeric argument required\n", \
 					d->argv[1]);

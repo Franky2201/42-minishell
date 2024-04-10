@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:11:34 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/25 13:38:42 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 18:02:53 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	parent_execution(t_list *node, t_shell *d)
 	t_parser	*cmd;
 
 	cmd = (t_parser *)(node->content);
-	if (redirection(cmd, d)
-		|| !cmd->argv[0])
+	if (!cmd || !cmd->argv || !cmd->argv[0] || redirection(cmd, d))
 	{
 		cmd->exit_status = 1;
 		return (1);

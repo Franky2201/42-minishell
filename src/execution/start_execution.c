@@ -6,7 +6,7 @@
 /*   By: rkersten <rkersten@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:31:57 by rkersten          #+#    #+#             */
-/*   Updated: 2024/03/28 18:51:00 by gde-win          ###   ########.fr       */
+/*   Updated: 2024/03/29 18:03:42 by gde-win          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static	void	check_execution_type(t_exec *p, t_shell *d)
 {
+	if (!p || !p->node || !d)
+		return ;
 	if (!p->is_fork)
 		parent_execution(p->node, d);
 	else if (!d->pid[p->content->i])
@@ -77,7 +79,7 @@ int	start_execution(t_shell *shell)
 	{
 		check_fork(&s, shell);
 		s.content = (t_parser *)s.node->content;
-		if (!s.content->f && check_access(s.content, shell))
+		if (s.content->argv && !s.content->f && check_access(s.content, shell))
 		{
 			if (errno != ENOMEM)
 				redirection(s.content, shell);
