@@ -19,8 +19,8 @@ SRCS			=	$(addsuffix .c, $(addprefix src/builtin/, $(BUILTIN))) \
 					$(addsuffix .c, $(addprefix src/lexer/, $(LEXER))) \
 					$(addsuffix .c, $(addprefix src/parser/, $(PARSER))) \
 					$(addsuffix .c, $(addprefix src/utils/, $(UTILS)))
-INC				=			-Iinc -I/Users/$(USER)/.brew/opt/readline/include
-LIB_DIR			=			-Lsrc/libft -Lsrc/ft_fprintf -L/Users/$(USER)/.brew/opt/readline/lib
+INC				=			-Iinc -I/opt/homebrew/Cellar/readline/8.2.13/include
+LIB_DIR			=			-Lsrc/libft -Lsrc/ft_fprintf -L/opt/homebrew/Cellar/readline/8.2.13/lib
 LIB				=			-lreadline -lhistory -lft -lftfprintf
 CFLAGS			=			-Wall -Wextra -Werror
 OBJS			=			$(addprefix $(BIN)/, $(notdir $(SRCS:.c=.o)))
@@ -75,24 +75,20 @@ $(BIN):
 	mkdir -p $(BIN)
 
 clean:
-	make -C src/libft clean
-	make -C src/ft_fprintf clean
+	@make -C src/libft clean
+	@make -C src/ft_fprintf clean
 	@if [ -e $(BIN) ]; then \
-			echo "__Cleaning objects"; \
-			echo "=> rm -rf $(BIN)"; \
 			/bin/rm -rf $(BIN); \
 	fi
 
 fclean: clean
-	make -C src/libft fclean
-	make -C src/ft_fprintf fclean
+	@make -C src/libft fclean
+	@make -C src/ft_fprintf fclean
 	@if [ -e $(NAME) ]; then \
-			echo "__Cleaning executable"; \
-			echo "=> rm -f $(NAME)"; \
 			/bin/rm -f $(NAME); \
 	fi
-	rm -f .input
-	rm -f .minishell
+	@rm -f .input
+	@rm -f .minishell
 
 re: fclean all
 

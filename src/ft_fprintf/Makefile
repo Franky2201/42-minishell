@@ -36,15 +36,11 @@ $(BIN):
 
 clean:
 	@if [ -e $(BIN) ]; then \
-		echo "$(GREEN)__Cleaning objects$(NC)"; \
-		echo "$(LIGHTBLUE)=> rm -rf $(BIN)$(NC)"; \
 		/bin/rm -rf $(BIN); \
 	fi
 
 fclean: clean
 	@if [ -e $(NAME) ]; then \
-		echo "$(GREEN)__Cleaning library$(NC)"; \
-		echo "$(LIGHTBLUE)=> rm -f $(NAME)$(NC)"; \
 		/bin/rm -f $(NAME); \
 	fi
 
